@@ -1,0 +1,27 @@
+function getDataCallback(callback) {
+    setTimeout(() => {
+        callback("Data received using Callback");
+    }, 1000);
+}
+getDataCallback((data) => {
+    console.log(data);
+});
+function getDataPromise() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve("Data received using Promise");
+        }, 1000);
+    });
+}
+getDataPromise()
+    .then(data => console.log(data));
+fetch("https://jsonplaceholder.typicode.com/posts/1")
+    .then(response => response.json())
+    .then(data => console.log(data));
+async function getDataAsync() {
+    let response = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+    let data = await response.json();
+    console.log(data);
+}
+
+getDataAsync();
